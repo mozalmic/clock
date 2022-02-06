@@ -1,0 +1,56 @@
+name: Digital clock
+version: "1.0"
+author: mozamic <mozamic@gmail.com>
+about: Digital clock based on MAX7219 chipset
+args:
+    - config:
+        short: f
+        long: config-file
+        help: Config file location (default is ./clock.yaml)
+        takes_value: true
+        required: false
+    - clean:
+        short: c
+        long: clean
+        help: Clean up screen and exit
+        takes_value: false
+        required: false
+subcommands:
+    - init-config:
+        about: init config for the clock
+        version: "1.0"
+        author: mozamic <mozamic@gmail.com>
+        args:
+            - INPUT:
+                help: config location (default is ./clock.yaml)
+                required: false
+                multiple: false
+                index: 1
+    - test-pwm:
+        about: test PWM chip (/sys/class/pwm)
+        version: "1.0"
+        author: mozamic <mozamic@gmail.com>
+        args:
+            - INPUT:
+                help: chip number (list available pins with `cat /sys/class/pwm/pwmchip0/npwm`)
+                required: true
+                multiple: false
+                index: 1
+            - enable:
+                short: e
+                long: enable 
+                help: enable chip on passed frequency
+                takes_value: true
+                required: false
+            - duty:
+                short: u
+                long: duty 
+                help: duty in percent
+                takes_value: true
+                required: false
+            - disable:
+                short: d
+                long: disable 
+                help: disable chip
+                takes_value: false
+                required: false

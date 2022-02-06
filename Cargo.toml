@@ -1,0 +1,45 @@
+[package]
+name = "clock"
+version = "0.1.0"
+authors = ["Mike Mozalkov <mozalkovmd@gmail.com>"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# cortex-m = "0.7.3"
+# cortex-m-rt = "0.7.1"
+# cortex-m-semihosting = "0.3.3"
+tokio = { version = "1.15.0", features = ["rt-multi-thread", "macros", "time"]}
+chrono = "0.4.19"
+clap = { version = "2.34.0", features = ["yaml"]}
+snafu = "0.7.0"
+serde_yaml = "0.8.23"
+serde = { version = "1.0.132", features = ["derive"]}
+clock-macro = { path = "clock-macro" }
+
+embedded-hal = "0.2.6"
+# hifive1 = { version = "0.10.0", features = ["board-hifive1-revb"] }
+# panic-halt = "0.2.0"
+# riscv = "0.7.0"
+# riscv-rt = "0.8.0"
+max7219 = "0.3.1"
+gpio-cdev = "0.5.1"
+# for aht10
+linux-embedded-hal = "0.3.2"
+# aht10 = "0.0.1"
+bitflags = "1.3.2"
+i2cdev = "0.5.1"
+sysfs-pwm = "^0.1.0"
+
+[workspace]
+members = [
+    ".", "clock-macro"
+]
+default-members = [
+    ".", "clock-macro"
+]
+
+[[bin]]
+name = "clock"
+path = "src/main.rs"
